@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class MaxSumSubArrayOfSizeK {
   public static int findMaxSumSubArray(int k, int [] arr) {
     //sliding window O(N)
