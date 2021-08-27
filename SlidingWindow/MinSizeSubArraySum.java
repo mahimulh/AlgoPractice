@@ -1,7 +1,5 @@
 package SlidingWindow;
 
-import java.util.Arrays;
-
 class MinSizeSubArraySum {
   public static int findMinSubArray(int S, int[] arr) {
     // find length of smallest contiguous subarray whose sum is greater than or
