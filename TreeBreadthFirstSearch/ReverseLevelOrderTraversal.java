@@ -2,24 +2,25 @@ package TreeBreadthFirstSearch;
 
 import java.util.*;
 
-class TreeNode {
-  int val;
-  TreeNode left;
-  TreeNode right;
+// class TreeNode {
+//   int val;
+//   TreeNode left;
+//   TreeNode right;
 
-  TreeNode(int x) {
-    val = x;
-  }
-};
+//   TreeNode(int x) {
+//     val = x;
+//   }
+// };
 
-class LevelOrderTraversal {
+class ReverseLevelOrderTraversal {
   public static List<List<Integer>> traverse(TreeNode root) {
-    List<List<Integer>> result = new ArrayList<List<Integer>>(); // ArrayList because appending to end
+    List<List<Integer>> result = new LinkedList<List<Integer>>(); // LinkedList because we need to append to beginning
 
     if (root == null)
       return result;
 
     Queue<TreeNode> queue = new LinkedList<>();
+
     queue.offer(root);
 
     while (!queue.isEmpty()) {
@@ -36,14 +37,12 @@ class LevelOrderTraversal {
           queue.offer(currentNode.right);
         }
       }
-      result.add(currentLevel);
+      // append currently level at beginning
+      result.add(0, currentLevel);
     }
 
     return result;
   }
-  // T: O(N) where N is total number of nodes in the tree
-  // S: O(N) because we need to return list containing the level order traversal.
-  // O(N) space also needed for queue since we can have max N/2 nodes at any level
 
   public static void main(String[] args) {
     TreeNode root = new TreeNode(12);
@@ -52,7 +51,7 @@ class LevelOrderTraversal {
     root.left.left = new TreeNode(9);
     root.right.left = new TreeNode(10);
     root.right.right = new TreeNode(5);
-    List<List<Integer>> result = LevelOrderTraversal.traverse(root);
-    System.out.println("Level order traversal: " + result);
+    List<List<Integer>> result = ReverseLevelOrderTraversal.traverse(root);
+    System.out.println("Reverse level order traversal: " + result);
   }
 }
